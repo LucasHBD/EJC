@@ -1,0 +1,388 @@
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Montserrat:wght@300;400;500;600&display=swap');
+
+/* ── Variáveis (mesmas da home) ── */
+:root {
+  --gold:       #C9A84C;
+  --gold-light: #E8D5A3;
+  --gold-dark:  #9C7A2E;
+  --cream:      #F5F0E8;
+  --cream-dark: #EDE6D6;
+  --white:      #FFFFFF;
+  --text-dark:  #3A2E1E;
+  --text-mid:   #6B5A3E;
+}
+
+/* ── Reset ── */
+*, *::before, *::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Montserrat', sans-serif;
+  background-color: var(--white);
+  color: var(--text-dark);
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+/* ══════════════════════════════════════
+   HEADER — igual à home
+══════════════════════════════════════ */
+header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 40px;
+  background-color: var(--white);
+  border-bottom: 1px solid var(--gold-light);
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  box-shadow: 0 2px 12px rgba(201, 168, 76, 0.08);
+}
+
+.logo-header {
+  width: 120px;
+  height: 120px;
+  padding: 6px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--white);
+}
+
+.logo-header img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+nav {
+  display: flex;
+  align-items: center;
+  gap: 40px;
+}
+
+nav a {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 0.8rem;
+  font-weight: 500;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--text-mid);
+  position: relative;
+  transition: color 0.25s ease;
+}
+
+nav a::after {
+  content: '';
+  position: absolute;
+  bottom: -4px;
+  left: 0;
+  width: 0;
+  height: 1.5px;
+  background: var(--gold);
+  transition: width 0.3s ease;
+}
+
+nav a:hover {
+  color: var(--gold);
+}
+
+nav a:hover::after {
+  width: 100%;
+}
+
+nav a.active {
+  color: var(--gold);
+}
+
+nav a.active::after {
+  width: 100%;
+}
+
+/* ══════════════════════════════════════
+   PÁGINA DE PRODUTOS
+══════════════════════════════════════ */
+.produtos-page {
+  padding: 60px 40px 80px;
+  background-color: var(--white);
+}
+
+/* Título — mesmo padrão do .titulo da home */
+.produtos-page__titulo {
+  display: flex;
+  text-align: center;
+  justify-content: center;
+  margin-bottom: 48px;
+}
+
+.produtos-page__titulo h1 {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 2.2rem;
+  font-weight: 600;
+  color: var(--gold);
+  letter-spacing: 0.04em;
+  display: inline-block;
+  font-style: italic;
+}
+
+.produtos-page__titulo h1::after {
+  content: '';
+  display: block;
+  width: 60%;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, var(--gold), transparent);
+  margin: 10px auto 0;
+}
+
+/* Layout sidebar + grid */
+.produtos-page__content {
+  display: grid;
+  grid-template-columns: 180px 1fr;
+  gap: 50px;
+  align-items: start;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+/* ══════════════════════════════════════
+   SIDEBAR / FILTRO
+══════════════════════════════════════ */
+.sidebar {
+  position: sticky;
+  top: 140px;
+}
+
+.sidebar__titulo {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.1rem;
+  font-style: italic;
+  font-weight: 600;
+  color: var(--text-dark);
+  letter-spacing: 0.04em;
+  margin-bottom: 16px;
+}
+
+.filter-item {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  margin-bottom: 10px;
+  cursor: pointer;
+}
+
+.filter-item__label {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 0.78rem;
+  font-weight: 400;
+  color: var(--text-mid);
+  letter-spacing: 0.04em;
+  transition: color 0.25s ease;
+}
+
+.filter-item:hover .filter-item__label {
+  color: var(--gold);
+}
+
+.filter-item__label--active {
+  color: var(--gold);
+}
+
+/* Checkbox customizado */
+.checkbox {
+  width: 14px;
+  height: 14px;
+  border: 1.5px solid var(--gold-light);
+  background: var(--white);
+  border-radius: 2px;
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: border-color 0.25s, background 0.25s;
+}
+
+.checkbox--checked {
+  background: var(--gold);
+  border-color: var(--gold);
+}
+
+/* ══════════════════════════════════════
+   GRID DE PRODUTOS
+══════════════════════════════════════ */
+.grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+}
+
+.grid__empty,
+.grid__feedback {
+  grid-column: 1 / -1;
+  text-align: center;
+  font-family: 'Cormorant Garamond', serif;
+  font-style: italic;
+  font-size: 1rem;
+  color: var(--text-mid);
+  padding: 40px 0;
+}
+
+.grid__feedback--erro {
+  color: #c0392b;
+}
+
+/* ══════════════════════════════════════
+   CARD — mesmo estilo dos cards da home
+══════════════════════════════════════ */
+.card {
+  display: flex;
+  flex-direction: column;
+  cursor: pointer;
+  transition: transform 0.25s ease;
+}
+
+.card:hover {
+  transform: translateY(-4px);
+}
+
+.card__image {
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  background: var(--cream);
+  background-size: cover;
+  background-position: center;
+  border-radius: 10px;
+  box-shadow: 0 4px 14px rgba(201, 168, 76, 0.15);
+  display: flex;
+  align-items: flex-end;
+  transition: box-shadow 0.25s ease;
+  overflow: hidden;
+}
+
+.card:hover .card__image {
+  box-shadow: 0 6px 22px rgba(201, 168, 76, 0.3);
+}
+
+.card__price {
+  background: linear-gradient(to top, rgba(58, 46, 30, 0.65) 0%, transparent 100%);
+  width: 100%;
+  padding: 32px 14px 12px;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 0.95rem;
+  font-weight: 500;
+  color: var(--white);
+  letter-spacing: 0.04em;
+}
+
+.card__info {
+  padding: 12px 4px 0;
+}
+
+.card__name {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 0.82rem;
+  font-weight: 500;
+  color: var(--text-mid);
+  letter-spacing: 0.04em;
+  margin-bottom: 4px;
+}
+
+.card__category {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 0.70rem;
+  font-weight: 300;
+  color: var(--gold-dark);
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+.card__descricao {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 0.75rem;
+  font-weight: 300;
+  color: var(--text-mid);
+  margin-top: 6px;
+  line-height: 1.6;
+}
+
+.card__btn {
+  margin-top: 12px;
+  padding: 8px 20px;
+  border: 1.5px solid var(--gold);
+  border-radius: 20px;
+  background: transparent;
+  color: var(--text-dark);
+  font-family: 'Montserrat', sans-serif;
+  font-size: 0.72rem;
+  font-weight: 500;
+  letter-spacing: 0.08em;
+  cursor: pointer;
+  align-self: flex-start;
+  transition: background 0.3s ease, color 0.3s ease;
+}
+
+.card__btn:hover {
+  background: var(--gold);
+  color: var(--white);
+}
+
+/* ══════════════════════════════════════
+   RESPONSIVO
+══════════════════════════════════════ */
+@media (max-width: 900px) {
+  .produtos-page__content {
+    grid-template-columns: 1fr;
+  }
+
+  .sidebar {
+    position: static;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px 24px;
+    align-items: center;
+  }
+
+  .sidebar__titulo {
+    width: 100%;
+    margin-bottom: 4px;
+  }
+
+  .grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 768px) {
+  .produtos-page {
+    padding: 40px 20px 60px;
+  }
+
+  header {
+    padding: 12px 20px;
+  }
+
+  nav {
+    gap: 20px;
+  }
+
+  nav a {
+    font-size: 0.72rem;
+  }
+
+  .grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 480px) {
+  .grid {
+    grid-template-columns: 1fr;
+  }
+}
