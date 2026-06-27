@@ -95,10 +95,10 @@ export default function ProdutosPage() {
           <img src={logo} alt="Logo EJC" />
         </div>
         <nav>
-          <a href="/">Início</a>
-          <a href="/produtos" className="active">Produtos</a>
-          <a href="/sobreNos">Sobre Nós</a>
-          <a href="/contato">Contato</a>
+          <Link to="/">Início</Link>
+          <Link to="/produtos">Produtos</Link>
+          <Link to="/sobreNos">Sobre Nós</Link>
+          <Link to="/contato">Contato</Link>
         </nav>
       </header>
 

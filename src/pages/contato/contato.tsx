@@ -3,6 +3,7 @@ import "leaflet/dist/leaflet.css";
 import L from "leaflet";
 import "./contato.css";
 import logo from "../../assets/EJC.png";
+import { Link } from "react-router-dom";
 
 // Corrige o ícone padrão do Leaflet com Webpack/Vite
 import markerIcon2x from "leaflet/dist/images/marker-icon-2x.png";
@@ -38,10 +39,10 @@ export default function Contato() {
           <img src={logo} alt="Logo EJC" />
         </div>
         <nav>
-          <a href="/">Início</a>
-          <a href="/produtos">Produtos</a>
-          <a href="/sobreNos">Sobre Nós</a>
-          <a href="/contato" className="active">Contato</a>
+          <Link to="/">Início</Link>
+          <Link to="/produtos">Produtos</Link>
+          <Link to="/sobreNos">Sobre Nós</Link>
+          <Link to="/contato">Contato</Link>
         </nav>
       </header>
 
