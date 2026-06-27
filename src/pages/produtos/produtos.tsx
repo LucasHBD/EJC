@@ -34,14 +34,10 @@ interface ProductCardProps {
 function ProductCard({ produto }: ProductCardProps) {
   return (
     <div className="card">
-      <div
-        className="card__image"
-        style={
-          produto.imagem_url
-            ? { backgroundImage: `url(${produto.imagem_url})` }
-            : {}
-        }
-      >
+      <div className="card__image">
+        {produto.imagem_url ? (
+          <img src={produto.imagem_url} alt={produto.nome} className="card__image-img" />
+        ) : null}
         <div className="card__price">
           R$ {Number(produto.preco).toFixed(2).replace(".", ",")}
         </div>
@@ -96,7 +92,6 @@ export default function ProdutosPage() {
     <>
       <header>
         <div className="logo-header">
-          {/* Substitua pelo caminho do seu logo */}
           <img src={logo} alt="Logo EJC" />
         </div>
         <nav>

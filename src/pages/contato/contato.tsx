@@ -40,7 +40,7 @@ export default function Contato() {
         <nav>
           <a href="/">Início</a>
           <a href="/produtos">Produtos</a>
-          <a href="/sobre">Sobre Nós</a>
+          <a href="/sobreNos">Sobre Nós</a>
           <a href="/contato" className="active">Contato</a>
         </nav>
       </header>

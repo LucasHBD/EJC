@@ -2,6 +2,7 @@ import { type ChangeEvent, type FormEvent, useState } from "react";
 import { supabase } from "../../supabase";
 import type { NovoProduto } from "../../type";
 import "./cadastroProduto.css";
+import logo from "../../assets/EJC.png";
 
 const CATEGORIAS = ["Kits", "Decoração", "Papelaria", "Itens de casa", "Artesanato"];
 
@@ -67,17 +68,21 @@ export default function CadastroProduto() {
       const nomeArquivo = `${Date.now()}.${ext}`;
 
       const { error: uploadError } = await supabase.storage
-        .from("produtos-imagens")
-        .upload(nomeArquivo, imagem, { upsert: false });
+        .from("produtos-imagem")
+        .upload(nomeArquivo, imagem, {
+          upsert: true,
+          contentType: imagem.type,
+        });
 
       if (uploadError) {
+        console.log("Erro completo:", JSON.stringify(uploadError));
         setErro("Erro ao fazer upload da imagem. Tente novamente.");
         setLoading(false);
         return;
-      }
+}
 
       const { data: urlData } = supabase.storage
-        .from("produtos-imagens")
+        .from("produtos-imagem")
         .getPublicUrl(nomeArquivo);
 
       imagem_url = urlData.publicUrl;
@@ -109,7 +114,7 @@ export default function CadastroProduto() {
     <>
       <header>
         <div className="logo-header">
-          <img src="/assets/Vector.png" alt="Logo EJC" />
+          <img src={logo} alt="Logo EJC" />
         </div>
         <nav>
           <a href="/">Início</a>

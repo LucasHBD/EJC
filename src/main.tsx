@@ -2,12 +2,14 @@ import { StrictMode } from 'react'
 import { createRoot } from 'react-dom/client'
 import './index.css'
 import Home from './pages/inicio'
-import {createBrowserRouter, RouterProvider} from "react-router-dom"
+import { createBrowserRouter, RouterProvider } from "react-router-dom"
 import ProdutosPage from './pages/produtos/produtos'
 import CadastroProduto from './pages/cadastro-produto/cadastroProduto'
 import SobreNos from './pages/sobre/sobre'
 import Contato from './pages/contato/contato'
-
+import Login from './pages/login/login'
+import { AuthProvider } from "./context/AuthContext"
+import RotaProtegida from './context/RotaProtegida'
 
 const router = createBrowserRouter([
   {
@@ -20,7 +22,11 @@ const router = createBrowserRouter([
   },
   {
     path: "/cadastrar-produtos-admin",
-    element: <CadastroProduto />
+    element: (
+      <RotaProtegida>
+        <CadastroProduto />
+      </RotaProtegida>
+    )
   },
   {
     path: "/sobreNos",
@@ -29,11 +35,17 @@ const router = createBrowserRouter([
   {
     path: "/contato",
     element: <Contato />
+  },
+  {
+    path: "/login",
+    element: <Login />
   }
 ]);
 
-createRoot(document.getElementById('root')!).render(
+createRoot(document.getElementById("root")!).render(
   <StrictMode>
-    <RouterProvider router={router} />
-  </StrictMode>,
-)
+    <AuthProvider>
+      <RouterProvider router={router} />
+    </AuthProvider>
+  </StrictMode>
+);
